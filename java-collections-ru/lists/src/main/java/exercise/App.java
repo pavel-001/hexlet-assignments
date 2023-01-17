@@ -2,23 +2,18 @@ package exercise;
 
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.List;
 
 // BEGIN
 class App{
     public static boolean scrabble(String text, String words){
-        String wordsMod = words.toLowerCase();
-        String result = "";
-        String textMod = text.toLowerCase();
-        for (int i = 0; i < words.length(); i++) {
-            for (int j = textMod.length()-1; j >= 0 ; j--) {
-                if (wordsMod.charAt(i) == textMod.charAt(j)) {
-                    result += textMod.substring(j, j+1);
-                    textMod = textMod.substring(0, j) + textMod.substring(j+1, textMod.length());
-                    break;
-                }
-            }
+        List<String> wordsMod = new ArrayList<>(List.of(words.toLowerCase().split("")));
+        System.out.println(wordsMod);
+        String[] textMod = text.toLowerCase().split("");
+        for (String s : textMod) {
+            wordsMod.remove(s);
         }
-        return result.equals(wordsMod);
+        return wordsMod.size() == 0;
     }
 }
 //END
